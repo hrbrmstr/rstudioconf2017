@@ -1,0 +1,9 @@
+op_status_code,op_status_descr
++,Operational
+-,Nonoperational
+P,Partially Operational
+B,Backup/Standby
+S,Spare
+X,Extended Mission
+D,Decayed
+?,Unknown
