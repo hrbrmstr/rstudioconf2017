@@ -7,11 +7,16 @@
 #'     toc: true
 #'     toc_float: true
 #'     theme: spacelab
-#'     highlight: kate
+#'     highlight: espresso
 #' ---
 #+ include=FALSE
 knitr::opts_chunk$set(message=FALSE, warning=FALSE, echo=TRUE, cache=FALSE, collapse=FALSE)
 options(width=100)
+
+#+ intro
+
+#' This is just an example of writing readable code with pipes using some of the rules or
+#' philosophies that were outlined in the talk.
 
 #' ### Setup
 
@@ -23,8 +28,12 @@ library(tools)
 
 #' ### Read in data
 
+#' This modularizes the code a bit
+
 #+ data, cache=TRUE
-source("data.r")
+source("satcat_data.r")
+
+satcat <- read_satellite_data()
 
 #' ### What does our data look like?
 

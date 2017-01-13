@@ -9,9 +9,11 @@
 #'     theme: spacelab
 #'     highlight: espresso
 #' ---
-#+ include=FALSE
+#+ include=FALSE, message=FALSE
 knitr::opts_chunk$set(message=FALSE, warning=FALSE, echo=TRUE, cache=FALSE, collapse=FALSE)
 options(width=60)
+
+#' Some examples for how to work with the honeypot data
 
 #' ### The "good 'ol days"
 
@@ -48,7 +50,14 @@ library(tidyverse)
 
 #+ cache=TRUE
 list.files("data/honeypot", pattern="cowrie.*json.gz", full.names=TRUE) %>%
-  map_df(stream_in) %>%
+  map_df(~tbl_df(stream_in(.))) %>%
   select(timestamp, src_ip, src_port, sensor, session,
          dst_port, eventid, username, password) %>%
-  mutate(timestamp=anytime(timestamp))
+  mutate(timestamp=anytime(timestamp),
+         date = as.Date(timestamp)) -> df
+
+glimpse(df)
+
+filter(df, !grepl(" ", username), !is.na(username)) %>%
+  count(username, password, sort=TRUE) %>%
+  print(n=20)
