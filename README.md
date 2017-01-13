@@ -1,4 +1,4 @@
 
-Slides, data and some code from rstudioconf::2017
+Slides, data and some code from rstudio::conf 2017
 
 ![](readme.png)
